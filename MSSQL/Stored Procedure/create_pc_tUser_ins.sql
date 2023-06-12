@@ -1,3 +1,8 @@
+-- 저장 프로시저 DROP
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'pc_tUser_ins')
+    DROP PROCEDURE pc_tUser_ins
+GO
+
 -- 사용자가 입력한 user_id의 형식을 검증하는 저장 프로시저
 CREATE PROCEDURE pc_tUser_ins 
 @user_id VARCHAR(32), -- 유저 아이디. 영숫자 + "@.", 대소문자 구별 없음, 시작은 영문자
