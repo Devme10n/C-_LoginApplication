@@ -47,6 +47,7 @@ SQL JOIN과 저장 프로시저를 이용한 데이터베이스 관리 학습
 |---------|---------|--------------|----------|--------|--------|----------|
 | 역할ID | user_role_id | user_role_id | char | 32 | | |
 | 역할유형 | user_role_type | user_role_type | char | 16 | admin, user | |
+
 </div>
 </details>
 
@@ -58,10 +59,55 @@ SQL JOIN과 저장 프로시저를 이용한 데이터베이스 관리 학습
 
     ![290.ERD](https://github.com/max990624/C-_LoginApplication/blob/master/999.draw.io/290.%20Entity-Relationship%20Diagram-Entity-Relationship%20Diagram.drawio.png)
 
-5. [테이블 명세서](https://github.com/max990624/C-_LoginApplication/blob/master/100.%20LoginSystem%20Document/310.%20Table%20Specification.xlsx)
+<details>
+<summary>5. 테이블 명세서</summary>
+<div>
 
+### 사용자
+
+|의미|Name|Type|Len|Null|Uni/Dup|Domain|Comment|
+|----|----|----|----|----|----|----|----|
+|사용자ID|user_id|char|32|N|U||영숫자 + "@.", 대소문자 구별없음, 시작은 영문자|
+|사용자가입일시|join_dtm|datetime||N||||
+|사용자탈퇴일시|wdrl_dtm|datetime||Y||||
+|최초기록일시|w1_dtm|datetime||N||||
+|최종기록일시|w9_dtm|datetime||N||||
+
+### 인증-패스워드
+
+|의미|Name|Type|Len|Null|Uni/Dup|Domain|Comment|
+|----|----|----|----|----|----|----|----|
+|로그인ID|login_id|char|32|N|U||영숫자 + "@.", 대소문자 구별없음, 시작은 영문자|
+|로그인닉네임|nickname|char|32|Y|U|||
+|로그인비밀번호|pass|char|64|N|||ascii 0x21 ~ 0x7E, 대소문자 구별함|
+|사용자ID|user_id|tUser(user_id)||N|U|||
+|최초기록일시|w1_dtm|datetime||N||||
+|최종기록일시|w9_dtm|datetime||N||||
+
+### 사용자 활동
+
+|의미|Name|Type|Len|Null|Uni/Dup|Domain|Comment|
+|----|----|----|----|----|----|----|----|
+|활동ID|user_act_id|uniqueidentifier|16|N|U||각각의 사용자 활동을 고유하게 식별|
+|로그인ID|login_id|varchar|32|N|||로그인 ID|
+|활동유형|user_act_type|char|16|N||'login', 'logout', 'signup'|사용자의 활동 유형|
+|최초기록일시|w1_dtm|datetime||N||||
+|최종기록일시|w9_dtm|datetime||N||||
+
+### 사용자 역할
+
+|의미|Name|Type|Len|Null|Uni/Dup|Domain|Comment|
+|----|----|----|----|----|----|----|----|
+|역할ID|user_role_id|uniqueidentifier|16|N|U||사용자에게 부여된 역할을 식별하는 ID|
+|로그인ID|login_id|varchar|32|N|||로그인 ID|
+|역할유형|user_role_type|char|16|N||'admin', 'user'|사용자에게 부여된 역할 유형|
+|최초기록일시|w1_dtm|datetime||
+
+</div>
+</details>
 
 ---
+
 ## 기능
 
 사용자 등록(Sign Up)
