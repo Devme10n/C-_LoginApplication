@@ -1,0 +1,26 @@
+[에러]
+메시지 547, 수준 16, 상태 0, 프로시저 pc_tLoginPass_ins, 줄 33 [배치 시작 줄 0]
+INSERT 문이 FOREIGN KEY 제약 조건 "FK_tLoginPass_tUser"과(와) 충돌했습니다. 
+데이터베이스 "Login_System", 테이블 "dbo.tUser", column 'user_id'에서 충돌이 발생했습니다.
+
+[원인]
+tUser에 없는 user_id를 매개변수로 하여 pc_tLoginPass_ins 실행 시
+
+[해결방법]
+tUser 테이블에 pc_tLoginPass_ins의 매개변수 user_id가 먼저 저장되어 있으면 됨
+pc_tUser_ins 실행 후 pc_tLoginPass_ins 실행
+
+1. 저장 프로시저에서 처리
+    - 트랜잭션을 사용하여 데이터 무결성 보장
+        - 트랜잭션
+        : 데이터베이스의 상태를 변환시키는 하나의 논리적 기능을 수행하기 위한 작업의 단위 또는 한꺼번에 모두 수행되어야 할 일련의 연산
+        : 데이터베이스 시스템에서 병행 제어 및 회복 작업 시 처리되는 작업의 논리적 단위
+        하나의 트랜잭션은 Commit되거나 Rollback된다
+2. 프로그램에서 처리
+    - DB에 대한 종속성 감소
+    - 코드 변경이 용이함
+
+[결론]
+저장 프로시저에서 처리
+-> 서버 or 인터넷 문제 등으로 pc_tUser_ins만 실행 후 pc_tLoginPass_ins는 실행되지 않는 문제를 발생시키지 않기 위함
+: 데이터 무결성을 우선시함.
