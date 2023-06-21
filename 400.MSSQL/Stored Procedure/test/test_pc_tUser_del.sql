@@ -2,7 +2,7 @@
 DECLARE @user_id VARCHAR(32);
 
 -- 변수에 테스트 값 할당
-SET @user_id = 'john.doe@example.com';
+SET @user_id = 'max';
 
 -- 저장 프로시저 호출
 EXEC pc_tUser_del @user_id;

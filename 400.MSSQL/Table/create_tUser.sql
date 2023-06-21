@@ -1,7 +1,7 @@
 USE [Login_System]
 GO
 
-/****** Object:  Table [dbo].[tUser]    Script Date: 2023-05-30 ¿ÀÈÄ 2:52:27 ******/
+/****** Object:  Table [dbo].[tUser] ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tUser]') AND type in (N'U'))
 DROP TABLE [dbo].[tUser]
 GO
@@ -16,3 +16,4 @@ CREATE TABLE [dbo].[tUser] (
 
     CONSTRAINT [PK_tUser] PRIMARY KEY(user_id)
 );
+GO

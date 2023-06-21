@@ -15,3 +15,5 @@ EXEC pc_tLoginPass_sel @login_id;
 
 -- 결과 출력
 SELECT * FROM tLoginPass;
+
+SELECT * FROM tUser;

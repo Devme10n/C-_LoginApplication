@@ -1,7 +1,7 @@
 USE [Login_System]
 GO
 
-/****** Object:  Table [dbo].[tLoginPass]    Script Date: 2023-05-30 ¿ÀÈÄ 3:37:25 ******/
+/****** Object:  Table [dbo].[tLoginPass] ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tLoginPass]') AND type in (N'U'))
 DROP TABLE [dbo].[tLoginPass]
 GO
